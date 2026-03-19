@@ -12,7 +12,7 @@ export default function Team() {
           <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: '#f5b700' }}>Nuestro Equipo</p>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4" style={{ color: '#0d1b2e' }}>Conoce a los fundadores</h2>
           <p className="text-slate-500 max-w-xl mx-auto">
-            Somos estudiantes destacados, listos para demostrar que la excelencia no depende de los años, sino de la capacidad, actualización y dedicación.
+            Somos un equipo de..
           </p>
         </div>
 
