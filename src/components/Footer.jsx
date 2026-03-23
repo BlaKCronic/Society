@@ -9,7 +9,6 @@ export default function Footer() {
             </div>
             <span className="text-white font-bold text-sm">Yañez Society</span>
           </div>
-          <p className="text-slate-500 text-xs">Tecnológico de Celaya · Celaya, Guanajuato</p>
         </div>
 
         <p className="text-slate-500 text-xs text-center">

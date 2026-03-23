@@ -47,18 +47,6 @@ export default function Contact() {
                   <div className="text-slate-500 text-sm">+52 461 XXX XXXX</div>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-white flex-shrink-0" style={{ boxShadow: '0 1px 6px rgba(0,0,0,0.08)' }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-semibold text-sm" style={{ color: '#0d1b2e' }}>Ubicación</div>
-                  <div className="text-slate-500 text-sm">Celaya, Guanajuato — reuniones presenciales disponibles</div>
-                </div>
-              </div>
             </div>
           </div>
 
