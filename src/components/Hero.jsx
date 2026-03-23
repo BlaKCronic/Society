@@ -12,17 +12,17 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2 mb-6">
             <div className="w-8 h-px" style={{ backgroundColor: '#f5b700' }} />
             <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#f5b700' }}>
-              Agencia integral de servicios
+              Desarrollo de software · Celaya, Gto.
             </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-white mb-6">
-            Lleva tu negocio{' '}
-            <span style={{ color: '#f5b700' }}>al siguiente nivel.</span>
+            Tecnología a la medida{' '}
+            <span style={{ color: '#f5b700' }}>de tu negocio.</span>
           </h1>
 
           <p className="text-lg text-slate-300 max-w-xl mb-10 leading-relaxed">
-            Yañez Society ofrece cosas.
+            Somos estudiantes del Tec de Celaya especializados en desarrollo web y de software. Creamos soluciones digitales modernas y migramos tus procesos — desde hojas de cálculo hasta sistemas profesionales.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mb-16">
@@ -33,15 +33,15 @@ export default function Hero() {
               </svg>
             </a>
             <a href="#contacto" className="px-7 py-3.5 rounded-full font-bold text-sm border text-white transition-all hover:bg-white/10" style={{ borderColor: 'rgba(255,255,255,0.3)' }}>
-              Agendar asesoría
+              Agendar asesoría gratuita
             </a>
           </div>
 
           <div className="flex flex-wrap gap-10">
             {[
-              { value: '---', label: 'ALGO' },
-              { value: '---', label: 'ALGO' },
-              { value: '---', label: 'ALGO' },
+              { value: '4+', label: 'Años de experiencia académica' },
+              { value: '100%', label: 'Compromiso con el cliente' },
+              { value: 'TEC', label: 'Celaya — Ingeniería en sistemas' },
             ].map((stat) => (
               <div key={stat.label}>
                 <div className="text-3xl font-extrabold" style={{ color: '#f5b700' }}>{stat.value}</div>

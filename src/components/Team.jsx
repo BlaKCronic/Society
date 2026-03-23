@@ -1,7 +1,25 @@
 const team = [
-  { name: 'Josué Yañez', role: 'CEO & Desarrollo de software', initials: 'JY', color: '#3b82f6' },
-  { name: 'Roberto Roque', role: 'Desarrollo y diseño de software y web', initials: 'RR', color: '#10b981' },
-  { name: 'Christian Ponce', role: 'Desarrollo y diseño de software y web', initials: 'CP', color: '#8b5cf6' },
+  {
+    name: 'Josué Yañez',
+    role: 'CEO & Desarrollo de Software',
+    description: 'Lidera la arquitectura de sistemas y coordina los proyectos. Especialista en backend y bases de datos.',
+    initials: 'JY',
+    color: '#3b82f6',
+  },
+  {
+    name: 'Christian Eduardo',
+    role: 'Desarrollo Web & Software',
+    description: 'Diseña y programa interfaces modernas. Domina el desarrollo frontend y la experiencia de usuario.',
+    initials: 'CE',
+    color: '#10b981',
+  },
+  {
+    name: 'Roberto Roque',
+    role: 'Desarrollo Web & Software',
+    description: 'Experto en integración de sistemas y lógica de negocio. Se encarga de que todo funcione de punta a punta.',
+    initials: 'RR',
+    color: '#8b5cf6',
+  },
 ]
 
 export default function Team() {
@@ -12,40 +30,33 @@ export default function Team() {
           <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: '#f5b700' }}>Nuestro Equipo</p>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4" style={{ color: '#0d1b2e' }}>Conoce a los fundadores</h2>
           <p className="text-slate-500 max-w-xl mx-auto">
-            Somos un equipo de..
+            Tres estudiantes del Tecnológico de Celaya unidos por la misma visión: llevar tecnología de calidad a los negocios del Bajío.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {team.map((member) => (
-            <div key={member.name} className="group rounded-2xl overflow-hidden" style={{ backgroundColor: '#0d1b2e' }}>
-              <div className="h-52 flex items-center justify-center relative" style={{ background: `linear-gradient(135deg, ${member.color}33 0%, #0d1b2e 100%)` }}>
+            <div key={member.name} className="group rounded-2xl overflow-hidden flex flex-col" style={{ backgroundColor: '#0d1b2e' }}>
+              <div className="h-48 flex items-center justify-center relative" style={{ background: `linear-gradient(135deg, ${member.color}33 0%, #0d1b2e 100%)` }}>
                 <div className="w-24 h-24 rounded-full flex items-center justify-center text-white text-3xl font-bold"
                   style={{ backgroundColor: `${member.color}40`, border: `2px solid ${member.color}60` }}>
                   {member.initials}
                 </div>
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <a href="#" className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 hover:bg-slate-100 transition-colors">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
-                      <circle cx="4" cy="4" r="2" />
-                    </svg>
-                  </a>
-                  <a href="#" className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 hover:bg-slate-100 transition-colors">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                      <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                  </a>
-                </div>
               </div>
-              <div className="p-5">
-                <h3 className="font-bold text-white text-sm">{member.name}</h3>
-                <p className="text-slate-400 text-xs mt-1">{member.role}</p>
-                <div className="mt-3 h-0.5 w-8 rounded" style={{ backgroundColor: member.color }} />
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-bold text-white text-base">{member.name}</h3>
+                <p className="text-xs font-semibold mt-0.5 mb-3" style={{ color: member.color }}>{member.role}</p>
+                <p className="text-slate-400 text-xs leading-relaxed flex-1">{member.description}</p>
+                <div className="mt-4 h-0.5 w-8 rounded" style={{ backgroundColor: member.color }} />
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 rounded-2xl p-8 text-center max-w-2xl mx-auto" style={{ backgroundColor: '#f8f9fb', border: '1px solid #e2e8f0' }}>
+          <p className="text-slate-500 text-sm leading-relaxed">
+            <strong className="text-slate-700">Estudiantes del Tec de Celaya</strong> — Ingeniería en Sistemas Computacionales. Comprometidos con la calidad, la puntualidad y la honestidad en cada entrega.
+          </p>
         </div>
       </div>
     </section>

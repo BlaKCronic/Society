@@ -18,10 +18,10 @@ export default function Contact() {
           <div>
             <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: '#f5b700' }}>Contacto</p>
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-5" style={{ color: '#0d1b2e' }}>
-              Iniciemos tu próximo gran proyecto.
+              Cuéntanos tu idea, nosotros la hacemos realidad.
             </h2>
             <p className="text-slate-500 leading-relaxed mb-10">
-              ¿Tienes una idea en mente? Escríbenos y agendaremos una reunión para evaluar cómo podemos ayudarte.
+              La primera asesoría es completamente gratuita. Agenda una reunión con nosotros y evaluamos juntos cómo podemos ayudarte con tu proyecto.
             </p>
             <div className="space-y-5">
               <div className="flex items-center gap-4">
@@ -43,8 +43,20 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <div className="font-semibold text-sm" style={{ color: '#0d1b2e' }}>Teléfono</div>
-                  <div className="text-slate-500 text-sm">+1234567890</div>
+                  <div className="font-semibold text-sm" style={{ color: '#0d1b2e' }}>WhatsApp / Teléfono</div>
+                  <div className="text-slate-500 text-sm">+52 461 XXX XXXX</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-white flex-shrink-0" style={{ boxShadow: '0 1px 6px rgba(0,0,0,0.08)' }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-semibold text-sm" style={{ color: '#0d1b2e' }}>Ubicación</div>
+                  <div className="text-slate-500 text-sm">Celaya, Guanajuato — reuniones presenciales disponibles</div>
                 </div>
               </div>
             </div>
@@ -59,15 +71,16 @@ export default function Contact() {
                   </svg>
                 </div>
                 <h3 className="font-bold text-xl mb-2" style={{ color: '#0d1b2e' }}>¡Mensaje enviado!</h3>
-                <p className="text-slate-500 text-sm">Nos pondremos en contacto contigo muy pronto.</p>
+                <p className="text-slate-500 text-sm">Nos pondremos en contacto contigo en menos de 24 horas.</p>
               </div>
             ) : (
               <>
-                <h3 className="font-bold text-xl mb-6" style={{ color: '#0d1b2e' }}>Envíanos un mensaje</h3>
+                <h3 className="font-bold text-xl mb-1" style={{ color: '#0d1b2e' }}>Envíanos un mensaje</h3>
+                <p className="text-slate-400 text-xs mb-6">Primera asesoría 100% gratuita y sin compromiso.</p>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Nombre o Empresa</label>
-                    <input type="text" placeholder="Ej: Luis Lao" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClass} required />
+                    <input type="text" placeholder="Ej: Ferretería El Clavo" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClass} required />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Correo Electrónico</label>
@@ -77,16 +90,18 @@ export default function Contact() {
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Servicio de Interés</label>
                     <select value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} className={inputClass}>
                       <option value="">Selecciona un servicio</option>
-                      <option>Desarrollo Web</option>
-                      <option>Desarrollo de Software</option>
+                      <option>Desarrollo Web (sitio o tienda en línea)</option>
+                      <option>Desarrollo de Software a la medida</option>
+                      <option>Migración de Excel a sistema profesional</option>
+                      <option>Otro / No sé por dónde empezar</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 mb-1.5">Mensaje</label>
-                    <textarea rows={4} placeholder="Cuéntanos un poco sobre tu proyecto o necesidad..." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputClass} resize-none`} required />
+                    <label className="block text-xs font-semibold text-slate-600 mb-1.5">Cuéntanos tu idea o problema</label>
+                    <textarea rows={4} placeholder="Ej: Tengo una tienda y quiero un sistema para controlar mi inventario y ventas..." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputClass} resize-none`} required />
                   </div>
                   <button type="submit" className="w-full py-3.5 rounded-xl font-bold text-sm transition-all hover:opacity-90 cursor-pointer" style={{ backgroundColor: '#f5b700', color: '#0d1b2e' }}>
-                    Enviar mensaje
+                    Solicitar asesoría gratuita
                   </button>
                 </form>
               </>
