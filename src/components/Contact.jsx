@@ -1,28 +1,53 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser'
+
+const EMAILJS_SERVICE_ID  = 'service_cu5xvlr'
+const EMAILJS_TEMPLATE_ID = 'template_vvudrdf'
+const EMAILJS_PUBLIC_KEY  = 'BnLS5UJKjpfP3re7b'
 
 export default function Contact() {
+  const formRef = useRef(null)
   const [form, setForm] = useState({ name: '', email: '', service: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
+    setStatus('sending')
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      )
+      setStatus('sent')
+      setForm({ name: '', email: '', service: '', message: '' })
+    } catch (err) {
+      console.error('EmailJS error:', err)
+      setStatus('error')
+    }
   }
 
-  const inputClass = 'w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all bg-white'
+  const inputClass =
+    'w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all bg-white'
 
   return (
     <section id="contacto" className="py-24" style={{ backgroundColor: '#f8f9fb' }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-start">
+
           <div>
-            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: '#f5b700' }}>Contacto</p>
+            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: '#f5b700' }}>
+              Contacto
+            </p>
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-5" style={{ color: '#0d1b2e' }}>
               Cuéntanos tu idea, nosotros la hacemos realidad.
             </h2>
             <p className="text-slate-500 leading-relaxed mb-10">
-              La primera asesoría es completamente gratuita. Agenda una reunión con nosotros y evaluamos juntos cómo podemos ayudarte con tu proyecto.
+              La primera asesoría es completamente gratuita. Agenda una reunión con nosotros y
+              evaluamos juntos cómo podemos ayudarte con tu proyecto.
             </p>
+
             <div className="space-y-5">
               <div className="flex items-center gap-4">
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-white flex-shrink-0" style={{ boxShadow: '0 1px 6px rgba(0,0,0,0.08)' }}>
@@ -33,9 +58,10 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-semibold text-sm" style={{ color: '#0d1b2e' }}>Email</div>
-                  <div className="text-slate-500 text-sm">contacto@yanezsociety.com</div>
+                  <div className="text-slate-500 text-sm">Josueyrojas@gmail.com</div>
                 </div>
               </div>
+
               <div className="flex items-center gap-4">
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-white flex-shrink-0" style={{ boxShadow: '0 1px 6px rgba(0,0,0,0.08)' }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2">
@@ -44,14 +70,14 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-semibold text-sm" style={{ color: '#0d1b2e' }}>WhatsApp / Teléfono</div>
-                  <div className="text-slate-500 text-sm">+52 461 XXX XXXX</div>
+                  <div className="text-slate-500 text-sm">+52 461 234 6857</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
-            {sent ? (
+            {status === 'sent' ? (
               <div className="text-center py-12">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'rgba(245,183,0,0.15)' }}>
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f5b700" strokeWidth="2.5">
@@ -59,24 +85,55 @@ export default function Contact() {
                   </svg>
                 </div>
                 <h3 className="font-bold text-xl mb-2" style={{ color: '#0d1b2e' }}>¡Mensaje enviado!</h3>
-                <p className="text-slate-500 text-sm">Nos pondremos en contacto contigo en menos de 24 horas.</p>
+                <p className="text-slate-500 text-sm mb-6">Nos pondremos en contacto contigo en menos de 24 horas.</p>
+                <button onClick={() => setStatus('idle')} className="text-xs font-semibold underline underline-offset-2" style={{ color: '#f5b700' }}>
+                  Enviar otro mensaje
+                </button>
               </div>
             ) : (
               <>
                 <h3 className="font-bold text-xl mb-1" style={{ color: '#0d1b2e' }}>Envíanos un mensaje</h3>
                 <p className="text-slate-400 text-xs mb-6">Primera asesoría 100% gratuita y sin compromiso.</p>
-                <form onSubmit={handleSubmit} className="space-y-4">
+
+                {status === 'error' && (
+                  <div className="mb-4 px-4 py-3 rounded-xl bg-red-50 border border-red-100 text-red-600 text-xs">
+                    Ocurrió un error al enviar. Escríbenos directamente a <strong>Josueyrojas@gmail.com</strong>
+                  </div>
+                )}
+
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Nombre o Empresa</label>
-                    <input type="text" placeholder="Ej: Ferretería El Clavo" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClass} required />
+                    <input
+                      type="text"
+                      name="from_name"
+                      placeholder="Ej: Ferretería El Clavo"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      className={inputClass}
+                      required
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Correo Electrónico</label>
-                    <input type="email" placeholder="ejemplo@correo.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} required />
+                    <input
+                      type="email"
+                      name="from_email"
+                      placeholder="ejemplo@correo.com"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      className={inputClass}
+                      required
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Servicio de Interés</label>
-                    <select value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} className={inputClass}>
+                    <select
+                      name="service"
+                      value={form.service}
+                      onChange={(e) => setForm({ ...form, service: e.target.value })}
+                      className={inputClass}
+                    >
                       <option value="">Selecciona un servicio</option>
                       <option>Desarrollo Web (sitio o tienda en línea)</option>
                       <option>Desarrollo de Software a la medida</option>
@@ -86,10 +143,32 @@ export default function Contact() {
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Cuéntanos tu idea o problema</label>
-                    <textarea rows={4} placeholder="Ej: Tengo una tienda y quiero un sistema para controlar mi inventario y ventas..." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputClass} resize-none`} required />
+                    <textarea
+                      rows={4}
+                      name="message"
+                      placeholder="Ej: Tengo una tienda y quiero un sistema para controlar mi inventario y ventas..."
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      className={`${inputClass} resize-none`}
+                      required
+                    />
                   </div>
-                  <button type="submit" className="w-full py-3.5 rounded-xl font-bold text-sm transition-all hover:opacity-90 cursor-pointer" style={{ backgroundColor: '#f5b700', color: '#0d1b2e' }}>
-                    Solicitar asesoría gratuita
+                  <button
+                    type="submit"
+                    disabled={status === 'sending'}
+                    className="w-full py-3.5 rounded-xl font-bold text-sm transition-all hover:opacity-90 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    style={{ backgroundColor: '#f5b700', color: '#0d1b2e' }}
+                  >
+                    {status === 'sending' ? (
+                      <>
+                        <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M21 12a9 9 0 1 1-6.219-8.56" strokeLinecap="round" />
+                        </svg>
+                        Enviando...
+                      </>
+                    ) : (
+                      'Solicitar asesoría gratuita'
+                    )}
                   </button>
                 </form>
               </>
