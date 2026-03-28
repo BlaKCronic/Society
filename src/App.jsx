@@ -6,6 +6,7 @@ import WhyUs from './components/WhyUs'
 import Team from './components/Team'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import PrivacyModal from './components/PrivacyModal'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Team />
       <Contact />
       <Footer />
+      <PrivacyModal />
     </div>
   )
 }

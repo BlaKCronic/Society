@@ -8,18 +8,15 @@ const EMAILJS_PUBLIC_KEY  = 'BnLS5UJKjpfP3re7b'
 export default function Contact() {
   const formRef = useRef(null)
   const [form, setForm] = useState({ name: '', email: '', service: '', message: '' })
+  const [honeypot, setHoneypot] = useState('')
   const [status, setStatus] = useState('idle')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (honeypot) return // es un bot, ignorar
     setStatus('sending')
     try {
-      await emailjs.sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        EMAILJS_PUBLIC_KEY
-      )
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, EMAILJS_PUBLIC_KEY)
       setStatus('sent')
       setForm({ name: '', email: '', service: '', message: '' })
     } catch (err) {
@@ -28,8 +25,7 @@ export default function Contact() {
     }
   }
 
-  const inputClass =
-    'w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all bg-white'
+  const inputClass = 'w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all bg-white'
 
   return (
     <section id="contacto" className="py-24" style={{ backgroundColor: '#f8f9fb' }}>
@@ -37,17 +33,13 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-16 items-start">
 
           <div>
-            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: '#f5b700' }}>
-              Contacto
-            </p>
+            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: '#f5b700' }}>Contacto</p>
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-5" style={{ color: '#0d1b2e' }}>
               Cuéntanos tu idea, nosotros la hacemos realidad.
             </h2>
             <p className="text-slate-500 leading-relaxed mb-10">
-              La primera asesoría es completamente gratuita. Agenda una reunión con nosotros y
-              evaluamos juntos cómo podemos ayudarte con tu proyecto.
+              La primera asesoría es completamente gratuita. Agenda una reunión con nosotros y evaluamos juntos cómo podemos ayudarte con tu proyecto.
             </p>
-
             <div className="space-y-5">
               <div className="flex items-center gap-4">
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-white flex-shrink-0" style={{ boxShadow: '0 1px 6px rgba(0,0,0,0.08)' }}>
@@ -61,7 +53,6 @@ export default function Contact() {
                   <div className="text-slate-500 text-sm">Josueyrojas@gmail.com</div>
                 </div>
               </div>
-
               <div className="flex items-center gap-4">
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-white flex-shrink-0" style={{ boxShadow: '0 1px 6px rgba(0,0,0,0.08)' }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2">
@@ -102,38 +93,23 @@ export default function Contact() {
                 )}
 
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+
+                  {/* ── HONEYPOT: invisible para humanos, los bots lo llenan ── */}
+                  <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
+                    <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex="-1" autoComplete="off" />
+                  </div>
+
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Nombre o Empresa</label>
-                    <input
-                      type="text"
-                      name="from_name"
-                      placeholder="Ej: Ferretería El Clavo"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className={inputClass}
-                      required
-                    />
+                    <input type="text" name="from_name" placeholder="Ej: Ferretería El Clavo" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClass} required />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Correo Electrónico</label>
-                    <input
-                      type="email"
-                      name="from_email"
-                      placeholder="ejemplo@correo.com"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className={inputClass}
-                      required
-                    />
+                    <input type="email" name="from_email" placeholder="ejemplo@correo.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} required />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Servicio de Interés</label>
-                    <select
-                      name="service"
-                      value={form.service}
-                      onChange={(e) => setForm({ ...form, service: e.target.value })}
-                      className={inputClass}
-                    >
+                    <select name="service" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} className={inputClass}>
                       <option value="">Selecciona un servicio</option>
                       <option>Desarrollo Web (sitio o tienda en línea)</option>
                       <option>Desarrollo de Software a la medida</option>
@@ -143,16 +119,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1.5">Cuéntanos tu idea o problema</label>
-                    <textarea
-                      rows={4}
-                      name="message"
-                      placeholder="Ej: Tengo una tienda y quiero un sistema para controlar mi inventario y ventas..."
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className={`${inputClass} resize-none`}
-                      required
-                    />
+                    <textarea rows={4} name="message" placeholder="Ej: Tengo una tienda y quiero un sistema para controlar mi inventario y ventas..." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputClass} resize-none`} required />
                   </div>
+
                   <button
                     type="submit"
                     disabled={status === 'sending'}
@@ -170,6 +139,24 @@ export default function Contact() {
                       'Solicitar asesoría gratuita'
                     )}
                   </button>
+
+                  {/* Badge de seguridad */}
+                  <div className="flex items-center justify-center gap-2 pt-1">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    <p className="text-xs text-slate-400">
+                      Tu información está protegida y nunca será compartida.{' '}
+                      <button
+                        type="button"
+                        onClick={() => document.getElementById('privacy-modal').showModal()}
+                        className="underline underline-offset-2 hover:text-slate-600 transition-colors cursor-pointer"
+                      >
+                        Política de privacidad
+                      </button>
+                    </p>
+                  </div>
+
                 </form>
               </>
             )}
