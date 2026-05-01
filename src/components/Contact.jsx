@@ -271,7 +271,6 @@ export default function Contact() {
                         <option>Otro / No sé por dónde empezar</option>
                       </optgroup>
                       <optgroup label="── Contabilidad & Fiscal ──">
-                        <option>Contabilidad General</option>
                         <option>Declaración Mensual (IVA &amp; ISR)</option>
                         <option>Declaración Anual (Cierre Fiscal)</option>
                         <option>Facturación &amp; Asesoramiento (CFDI + Régimen Óptimo)</option>
