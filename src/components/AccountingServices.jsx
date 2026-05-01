@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const services = [
   {
@@ -60,23 +60,6 @@ const services = [
 export default function AccountingServices() {
   const [hovered, setHovered] = useState(null)
 
-  /* ======================
-     DARK MODE MANUAL
-  ====================== */
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem('theme') === 'dark'
-  })
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-    }
-  }, [darkMode])
-
   return (
     <section
       id="contabilidad"
@@ -94,21 +77,6 @@ export default function AccountingServices() {
       />
 
       <div className="max-w-7xl mx-auto px-6 relative">
-
-        {/* BUTTON DARK MODE */}
-        <div className="flex justify-end mb-10">
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="px-4 py-2 rounded-xl text-sm font-semibold transition-all"
-            style={{
-              backgroundColor: 'var(--bg-card)',
-              color: 'var(--text-primary)',
-              border: '1px solid var(--border)',
-            }}
-          >
-            {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
-          </button>
-        </div>
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
