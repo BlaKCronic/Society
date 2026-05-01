@@ -20,6 +20,13 @@ const services = [
     description: '¿Todavía usas hojas de Excel para controlar tu negocio? Te ayudamos a migrar tus procesos a un sistema profesional: más rápido, seguro y fácil de usar para todo tu equipo.',
     bullets: ['De Excel a sistema web o desktop', 'Sin pérdida de tu información', 'Capacitación al equipo', 'Soporte post-migración'],
   },
+  {
+    icon: '$',
+    color: '#f5b700',
+    title: 'Servicios Contables',
+    description: 'Mantén tu negocio al día con el SAT sin complicaciones. Declaraciones mensuales, anuales y facturación CFDI a cargo de profesionales comprometidos con tu tranquilidad fiscal.',
+    bullets: ['Declaración mensual (IVA & ISR)', 'Declaración anual y cierre fiscal', 'Emisión y revisión de CFDI', 'Asesoría de régimen óptimo'],
+  },
 ]
 
 export default function Services() {
@@ -36,7 +43,7 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((svc) => (
             <div key={svc.title} className="bg-white rounded-2xl p-7 border border-slate-100 transition-all hover:border-slate-200 hover:shadow-lg hover:-translate-y-0.5 flex flex-col">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white text-lg font-bold mb-5 flex-shrink-0" style={{ backgroundColor: svc.color }}>

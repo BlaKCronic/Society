@@ -5,6 +5,7 @@ const navLinks = [
   { label: 'Sobre Nosotros', href: '#nosotros' },
   { label: 'Servicios', href: '#servicios' },
   { label: 'Por qué elegirnos', href: '#elegirnos' },
+  { label: 'Contabilidad', href: '#contabilidad' },
   { label: 'Equipo', href: '#equipo' },
 ]
 

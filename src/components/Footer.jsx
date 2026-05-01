@@ -16,7 +16,7 @@ export default function Footer() {
         </p>
 
         <div className="flex gap-6">
-          {[['Inicio', '#inicio'], ['Servicios', '#servicios'], ['Equipo', '#equipo'], ['Contacto', '#contacto']].map(([label, href]) => (
+          {[['Inicio', '#inicio'], ['Servicios', '#servicios'], ['Contabilidad', '#contabilidad'], ['Equipo', '#equipo'], ['Contacto', '#contacto']].map(([label, href]) => (
             <a key={label} href={href} className="text-slate-500 hover:text-slate-300 text-xs transition-colors">
               {label}
             </a>

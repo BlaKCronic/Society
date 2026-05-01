@@ -2,7 +2,7 @@ const team = [
   {
     name: 'Josué Yañez',
     role: 'CEO & Desarrollo de Software',
-    description: 'Lidera la arquitectura de sistemas y coordina los proyectos. Especialista en backend y bases de datos.',
+    description: 'Lidera la arquitectura de sistemas y coordina los proyectos. Especialista en backend, bases de datos y servicios contables & fiscales conforme al SAT.',
     initials: 'JY',
     color: '#3b82f6',
   },

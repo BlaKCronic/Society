@@ -49,13 +49,12 @@ function getMinutesUntilReset() {
 // ─── VALIDACIÓN DE INPUTS ─────────────────────────────────────────────────────
 const MAX_LENGTHS = { name: 100, email: 150, message: 1000 }
 
-// Elimina etiquetas HTML y caracteres peligrosos
 function sanitize(str) {
   return str
-    .replace(/<[^>]*>/g, '')           // quita etiquetas HTML
-    .replace(/[<>"'`]/g, '')           // quita caracteres peligrosos
-    .replace(/javascript:/gi, '')      // quita intentos de JS injection
-    .replace(/on\w+\s*=/gi, '')        // quita event handlers (onclick=, etc.)
+    .replace(/<[^>]*>/g, '')
+    .replace(/[<>"'`]/g, '')
+    .replace(/javascript:/gi, '')
+    .replace(/on\w+\s*=/gi, '')
     .trim()
 }
 
@@ -83,33 +82,26 @@ function validateForm(form) {
 
 export default function Contact() {
   const formRef  = useRef(null)
-  const [form, setForm]       = useState({ name: '', email: '', service: '', message: '' })
-  const [errors, setErrors]   = useState({})
+  const [form, setForm]         = useState({ name: '', email: '', service: '', message: '' })
+  const [errors, setErrors]     = useState({})
   const [honeypot, setHoneypot] = useState('')
-  const [status, setStatus]   = useState('idle')
+  const [status, setStatus]     = useState('idle')
 
   const remaining = getRemainingAttempts()
   const isBlocked = remaining <= 0
 
   const handleChange = (field, value) => {
-    // Limitar longitud en tiempo real
     const max = MAX_LENGTHS[field]
     if (max && value.length > max) return
     setForm({ ...form, [field]: value })
-    // Limpiar error del campo al escribir
     if (errors[field]) setErrors({ ...errors, [field]: null })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    // 1. Honeypot
     if (honeypot) return
-
-    // 2. Rate limiting
     if (isBlocked) return
 
-    // 3. Validación
     const validationErrors = validateForm(form)
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
@@ -193,7 +185,6 @@ export default function Contact() {
               <>
                 <div className="flex items-start justify-between mb-1">
                   <h3 className="font-bold text-xl" style={{ color: '#0d1b2e' }}>Envíanos un mensaje</h3>
-                  {/* Indicador de intentos restantes */}
                   {!isBlocked && remaining < MAX_SUBMISSIONS && (
                     <span className="text-xs px-2 py-1 rounded-full bg-amber-50 text-amber-600 border border-amber-100 flex-shrink-0 ml-3 mt-0.5">
                       {remaining} envío{remaining !== 1 ? 's' : ''} restante{remaining !== 1 ? 's' : ''}
@@ -202,7 +193,6 @@ export default function Contact() {
                 </div>
                 <p className="text-slate-400 text-xs mb-6">Primera asesoría 100% gratuita y sin compromiso.</p>
 
-                {/* Bloqueado por rate limit */}
                 {isBlocked && (
                   <div className="mb-4 px-4 py-3 rounded-xl bg-amber-50 border border-amber-100 text-amber-700 text-xs">
                     <strong>Límite alcanzado.</strong> Has enviado {MAX_SUBMISSIONS} mensajes en la última hora. Podrás enviar otro en aproximadamente <strong>{getMinutesUntilReset()} minutos</strong>.<br />
@@ -267,10 +257,17 @@ export default function Contact() {
                       disabled={isBlocked}
                     >
                       <option value="">Selecciona un servicio</option>
-                      <option>Desarrollo Web (sitio o tienda en línea)</option>
-                      <option>Desarrollo de Software a la medida</option>
-                      <option>Migración de Excel a sistema profesional</option>
-                      <option>Otro / No sé por dónde empezar</option>
+                      <optgroup label="── Desarrollo ──">
+                        <option>Desarrollo Web (sitio o tienda en línea)</option>
+                        <option>Desarrollo de Software a la medida</option>
+                        <option>Migración de Excel a sistema profesional</option>
+                        <option>Otro / No sé por dónde empezar</option>
+                      </optgroup>
+                      <optgroup label="── Contabilidad & Fiscal ──">
+                        <option>Declaración Mensual (IVA &amp; ISR)</option>
+                        <option>Declaración Anual (Cierre Fiscal)</option>
+                        <option>Facturación &amp; Asesoramiento (CFDI + Régimen Óptimo)</option>
+                      </optgroup>
                     </select>
                   </div>
 

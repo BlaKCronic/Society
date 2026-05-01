@@ -24,6 +24,11 @@ const reasons = [
     description: 'Nos comprometemos con fechas reales. Establecemos un plan de trabajo claro y te mantenemos informado en cada etapa.',
     path: 'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01',
   },
+  {
+    title: 'SAT Compliant',
+    description: 'Nuestros servicios contables y fiscales cumplen con todas las disposiciones del SAT: declaraciones, CFDI y asesoría de régimen siempre al día.',
+    path: 'M9 14l2 2 4-4M12 3l1.5 3 3.5.5-2.5 2.5.5 3.5L12 11l-3 1.5.5-3.5L7 6.5 10.5 6z',
+  },
 ]
 
 export default function WhyUs() {
@@ -48,15 +53,32 @@ export default function WhyUs() {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            {reasons.map((reason) => (
-              <div key={reason.title} className="rounded-2xl p-5 transition-all hover:-translate-y-0.5" style={{ backgroundColor: '#1a2a40' }}>
-                <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(245,183,0,0.15)' }}>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+            {reasons.map((reason, i) => (
+              <div
+                key={reason.title}
+                className={`rounded-2xl p-5 transition-all hover:-translate-y-0.5 ${i === reasons.length - 1 ? 'col-span-2 lg:col-span-1' : ''}`}
+                style={{
+                  backgroundColor: reason.title === 'SAT Compliant' ? 'rgba(245,183,0,0.08)' : '#1a2a40',
+                  border: reason.title === 'SAT Compliant' ? '1px solid rgba(245,183,0,0.25)' : '1px solid transparent',
+                }}
+              >
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center mb-4"
+                  style={{ backgroundColor: reason.title === 'SAT Compliant' ? 'rgba(245,183,0,0.2)' : 'rgba(245,183,0,0.15)' }}
+                >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5b700" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d={reason.path} />
                   </svg>
                 </div>
-                <h3 className="font-bold text-white text-sm mb-2">{reason.title}</h3>
+                <h3 className="font-bold text-sm mb-2 flex items-center gap-2" style={{ color: '#fff' }}>
+                  {reason.title}
+                  {reason.title === 'SAT Compliant' && (
+                    <span className="text-xs font-black px-1.5 py-0.5 rounded" style={{ backgroundColor: '#f5b700', color: '#0d1b2e' }}>
+                      ✓
+                    </span>
+                  )}
+                </h3>
                 <p className="text-slate-400 text-xs leading-relaxed">{reason.description}</p>
               </div>
             ))}
