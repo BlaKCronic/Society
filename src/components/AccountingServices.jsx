@@ -8,8 +8,6 @@ const services = [
     tags: ['IVA', 'ISR'],
     description:
       'Presentación puntual ante el SAT cada mes. Nos encargamos de calcular, revisar y enviar tu declaración sin que tengas que preocuparte por fechas límite.',
-    price: '500',
-    unit: 'MXN / MES',
     accent: '#f5b700',
     bg: '#0d1b2e',
     features: [
@@ -26,8 +24,6 @@ const services = [
     tags: ['CIERRE FISCAL'],
     description:
       'Ingresos, deducciones y saldo a favor al cierre del ejercicio. Maximizamos tu devolución y cumplimos con todos los requisitos del SAT.',
-    price: '1,000',
-    unit: 'MXN / AÑO',
     accent: '#3b82f6',
     bg: '#fff',
     features: [
@@ -44,8 +40,6 @@ const services = [
     tags: ['EMISIÓN CFDI', 'REVISIÓN FACTURAS', 'RÉGIMEN ÓPTIMO'],
     description:
       'Emitimos y revisamos tus facturas conforme al SAT. Te asesoramos para elegir el régimen fiscal más conveniente para tu actividad.',
-    price: '1,200',
-    unit: 'MXN / MES',
     accent: '#f5b700',
     bg: '#0d1b2e',
     features: [
@@ -66,7 +60,6 @@ export default function AccountingServices() {
       className="py-24 relative overflow-hidden"
       style={{ backgroundColor: 'var(--bg-secondary)' }}
     >
-      {/* Decorative background */}
       <div
         className="absolute top-0 right-0 w-96 h-96 opacity-5 pointer-events-none"
         style={{
@@ -78,7 +71,6 @@ export default function AccountingServices() {
 
       <div className="max-w-7xl mx-auto px-6 relative">
 
-        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div>
             <span
@@ -116,7 +108,6 @@ export default function AccountingServices() {
           </div>
         </div>
 
-        {/* Cards */}
         <div className="space-y-4">
           {services.map((svc) => {
             const isDarkCard = svc.bg === '#0d1b2e'
@@ -143,7 +134,6 @@ export default function AccountingServices() {
               >
                 <div className="grid md:grid-cols-[80px_1fr_1fr_220px]">
 
-                  {/* Number */}
                   <div
                     className="hidden md:flex items-center justify-center"
                     style={{ backgroundColor: svc.accent }}
@@ -162,7 +152,6 @@ export default function AccountingServices() {
                     </span>
                   </div>
 
-                  {/* Title */}
                   <div className="px-7 py-8">
                     <h3
                       className="text-2xl font-black whitespace-pre-line"
@@ -191,7 +180,6 @@ export default function AccountingServices() {
                     </div>
                   </div>
 
-                  {/* Description */}
                   <div className="px-7 py-8">
                     <p
                       className="text-sm leading-relaxed mb-4"
@@ -227,28 +215,7 @@ export default function AccountingServices() {
                     </ul>
                   </div>
 
-                  {/* Price */}
-                  <div className="px-8 py-8 flex flex-col justify-center items-center gap-5">
-                    <div className="text-center">
-                      <div
-                        className="text-4xl font-black"
-                        style={{ color: svc.accent }}
-                      >
-                        ${svc.price}
-                      </div>
-
-                      <div
-                        className="text-xs font-semibold tracking-widest"
-                        style={{
-                          color: isDarkCard
-                            ? '#64748b'
-                            : 'var(--text-muted)',
-                        }}
-                      >
-                        {svc.unit}
-                      </div>
-                    </div>
-
+                  <div className="px-8 py-8 flex justify-center items-center">
                     <a
                       href="#contacto"
                       className="px-6 py-3 rounded-xl text-xs font-bold transition-all hover:opacity-90"
