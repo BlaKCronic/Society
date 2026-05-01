@@ -28,24 +28,32 @@ const reasons = [
     title: 'SAT Compliant',
     description: 'Nuestros servicios contables y fiscales cumplen con todas las disposiciones del SAT: declaraciones, CFDI y asesoría de régimen siempre al día.',
     path: 'M9 14l2 2 4-4M12 3l1.5 3 3.5.5-2.5 2.5.5 3.5L12 11l-3 1.5.5-3.5L7 6.5 10.5 6z',
+    highlight: true,
   },
 ]
 
 export default function WhyUs() {
   return (
-    <section id="elegirnos" className="py-24" style={{ backgroundColor: '#0d1b2e' }}>
+    <section id="elegirnos" className="py-24" style={{ backgroundColor: 'var(--bg-dark)' }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-start">
+
           <div className="md:sticky md:top-28">
-            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: '#f5b700' }}>Por qué elegirnos</p>
+            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--accent)' }}>
+              Por qué elegirnos
+            </p>
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-white mb-6">
               Experiencia de equipo senior,{' '}
-              <span style={{ color: '#f5b700' }}>precios de equipo joven.</span>
+              <span style={{ color: 'var(--accent)' }}>precios de equipo joven.</span>
             </h2>
-            <p className="text-slate-400 leading-relaxed max-w-md mb-8">
+            <p className="leading-relaxed max-w-md mb-8" style={{ color: 'var(--text-muted)' }}>
               Somos estudiantes del Tec de Celaya con ganas de demostrar de lo que somos capaces. Cada proyecto es una oportunidad de brillar y construir relaciones duraderas con nuestros clientes.
             </p>
-            <a href="#contacto" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-sm transition-all hover:opacity-90" style={{ backgroundColor: '#f5b700', color: '#0d1b2e' }}>
+            <a
+              href="#contacto"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-sm transition-all hover:opacity-90"
+              style={{ backgroundColor: 'var(--accent)', color: '#0d1b2e' }}
+            >
               Hablemos de tu proyecto
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -59,30 +67,31 @@ export default function WhyUs() {
                 key={reason.title}
                 className={`rounded-2xl p-5 transition-all hover:-translate-y-0.5 ${i === reasons.length - 1 ? 'col-span-2 lg:col-span-1' : ''}`}
                 style={{
-                  backgroundColor: reason.title === 'SAT Compliant' ? 'rgba(245,183,0,0.08)' : '#1a2a40',
-                  border: reason.title === 'SAT Compliant' ? '1px solid rgba(245,183,0,0.25)' : '1px solid transparent',
+                  backgroundColor: reason.highlight ? 'rgba(245,183,0,0.08)' : 'rgba(255,255,255,0.05)',
+                  border: reason.highlight ? '1px solid rgba(245,183,0,0.25)' : '1px solid rgba(255,255,255,0.06)',
                 }}
               >
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center mb-4"
-                  style={{ backgroundColor: reason.title === 'SAT Compliant' ? 'rgba(245,183,0,0.2)' : 'rgba(245,183,0,0.15)' }}
+                  style={{ backgroundColor: reason.highlight ? 'rgba(245,183,0,0.2)' : 'rgba(245,183,0,0.12)' }}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5b700" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d={reason.path} />
                   </svg>
                 </div>
-                <h3 className="font-bold text-sm mb-2 flex items-center gap-2" style={{ color: '#fff' }}>
+                <h3 className="font-bold text-sm mb-2 flex items-center gap-2 text-white">
                   {reason.title}
-                  {reason.title === 'SAT Compliant' && (
-                    <span className="text-xs font-black px-1.5 py-0.5 rounded" style={{ backgroundColor: '#f5b700', color: '#0d1b2e' }}>
+                  {reason.highlight && (
+                    <span className="text-xs font-black px-1.5 py-0.5 rounded" style={{ backgroundColor: 'var(--accent)', color: '#0d1b2e' }}>
                       ✓
                     </span>
                   )}
                 </h3>
-                <p className="text-slate-400 text-xs leading-relaxed">{reason.description}</p>
+                <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>{reason.description}</p>
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </section>

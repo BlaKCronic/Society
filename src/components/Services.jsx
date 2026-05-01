@@ -23,7 +23,7 @@ const services = [
   {
     icon: '$',
     color: '#f5b700',
-    title: 'Servicios Contables',
+    title: 'Servicios Contables & Fiscales',
     description: 'Mantén tu negocio al día con el SAT sin complicaciones. Declaraciones mensuales, anuales y facturación CFDI a cargo de profesionales comprometidos con tu tranquilidad fiscal.',
     bullets: ['Declaración mensual (IVA & ISR)', 'Declaración anual y cierre fiscal', 'Emisión y revisión de CFDI', 'Asesoría de régimen óptimo'],
   },
@@ -31,30 +31,42 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="servicios" className="py-24" style={{ backgroundColor: '#f8f9fb' }}>
+    <section id="servicios" className="py-24" style={{ backgroundColor: 'var(--bg-secondary)' }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: '#f5b700' }}>Nuestras Especialidades</p>
-          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight max-w-2xl mx-auto mb-4" style={{ color: '#0d1b2e' }}>
+          <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--accent)' }}>
+            Nuestras Especialidades
+          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight max-w-2xl mx-auto mb-4" style={{ color: 'var(--text-primary)' }}>
             Soluciones digitales completas para tu empresa
           </h2>
-          <p className="text-slate-500 max-w-xl mx-auto">
+          <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             Desde una página web hasta un sistema empresarial completo — nos adaptamos al tamaño y presupuesto de tu negocio.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((svc) => (
-            <div key={svc.title} className="bg-white rounded-2xl p-7 border border-slate-100 transition-all hover:border-slate-200 hover:shadow-lg hover:-translate-y-0.5 flex flex-col">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white text-lg font-bold mb-5 flex-shrink-0" style={{ backgroundColor: svc.color }}>
+            <div
+              key={svc.title}
+              className="rounded-2xl p-7 transition-all hover:-translate-y-0.5 hover:shadow-lg flex flex-col"
+              style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border)' }}
+            >
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-white text-lg font-bold mb-5 flex-shrink-0"
+                style={{ backgroundColor: svc.color }}
+              >
                 {svc.icon}
               </div>
-              <h3 className="font-bold text-lg mb-2" style={{ color: '#0d1b2e' }}>{svc.title}</h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-5">{svc.description}</p>
+              <h3 className="font-bold text-lg mb-2" style={{ color: 'var(--text-primary)' }}>{svc.title}</h3>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>{svc.description}</p>
               <ul className="space-y-2 mt-auto">
                 {svc.bullets.map((b) => (
-                  <li key={b} className="flex items-center gap-2 text-xs text-slate-500">
-                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${svc.color}20` }}>
+                  <li key={b} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
+                    <span
+                      className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: `${svc.color}20` }}
+                    >
                       <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke={svc.color} strokeWidth="3">
                         <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
@@ -67,9 +79,9 @@ export default function Services() {
           ))}
         </div>
 
-        <p className="text-center text-slate-400 text-sm mt-10">
+        <p className="text-center text-sm mt-10" style={{ color: 'var(--text-muted)' }}>
           ¿No encuentras lo que buscas?{' '}
-          <a href="#contacto" className="font-semibold underline underline-offset-2" style={{ color: '#f5b700' }}>
+          <a href="#contacto" className="font-semibold underline underline-offset-2" style={{ color: 'var(--accent)' }}>
             Escríbenos y lo evaluamos juntos.
           </a>
         </p>
