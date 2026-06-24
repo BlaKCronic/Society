@@ -22,7 +22,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg text-slate-300 max-w-xl mb-10 leading-relaxed">
-            Somos estudiantes del Tec de Celaya especializados en desarrollo web y de software. Creamos soluciones digitales modernas y migramos tus procesos — desde hojas de cálculo hasta sistemas profesionales.
+            Somos egresados del Tec de Celaya especializados en desarrollo web y de software. Creamos soluciones digitales modernas y migramos tus procesos — desde hojas de cálculo hasta sistemas profesionales.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mb-16">
@@ -39,7 +39,7 @@ export default function Hero() {
 
           <div className="flex flex-wrap gap-10">
             {[
-              { value: '4+', label: 'Años de experiencia académica' },
+              { value: '8+', label: 'Años de experiencia académica' },
               { value: '100%', label: 'Compromiso con el cliente' },
               { value: 'TEC', label: 'Celaya — Ingeniería en sistemas' },
             ].map((stat) => (
