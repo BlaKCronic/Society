@@ -51,11 +51,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-xs tracking-widest uppercase text-slate-500">Descubrir</span>
-        <div className="w-px h-10 bg-gradient-to-b from-slate-500 to-transparent" />
-      </div>
     </section>
   )
 }
