@@ -20,6 +20,13 @@ const team = [
     initials: 'RR',
     color: '#8b5cf6',
   },
+  {
+    name: 'Oscar',
+    role: 'DevOps & Seguridad',
+    description: 'Administra la infraestructura en la nube, automatiza despliegues y refuerza la seguridad de los sistemas. Experto en CI/CD, contenedores y monitoreo.',
+    initials: 'O',
+    color: '#f59e0b',
+  },
 ]
 
 export default function Team() {
@@ -34,7 +41,7 @@ export default function Team() {
             Conoce a los fundadores
           </h2>
           <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Tres estudiantes del Tecnológico de Celaya unidos por la misma visión: llevar tecnología de calidad a los negocios del Bajío.
+            Estudiantes del Tecnológico de Celaya unidos por la misma visión: llevar tecnología de calidad a los negocios de todas las regiones.
           </p>
         </div>
 
