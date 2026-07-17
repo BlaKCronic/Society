@@ -45,7 +45,7 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid sm:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {team.map((member) => (
             <div
               key={member.name}
