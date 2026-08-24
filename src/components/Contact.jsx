@@ -148,7 +148,7 @@ export default function Contact() {
                     </svg>
                   ),
                   label: 'WhatsApp / Teléfono',
-                  value: '+52 461 234 6857',
+                  value: '+52 442 602 7148',
                 },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-4">
