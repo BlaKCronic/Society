@@ -4,7 +4,7 @@ export default function Hero() {
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       </div>
-      <div className="absolute top-20 right-10 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ backgroundColor: '#f5b700' }} />
+      <div className="hero-lava-blob absolute top-20 right-10 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ backgroundColor: '#f5b700' }} />
       <div className="absolute bottom-10 left-1/3 w-64 h-64 rounded-full opacity-10 blur-3xl" style={{ backgroundColor: '#3b82f6' }} />
 
       <div className="relative max-w-7xl mx-auto px-6 pt-24 pb-16 w-full">
