@@ -39,7 +39,7 @@ export default function Hero() {
 
           <div className="flex flex-wrap gap-10">
             {[
-              { value: '8+', label: 'Años de experiencia' },
+              { value: '4+', label: 'Años de formación técnica' },
               { value: '100%', label: 'Compromiso con el cliente' },
               { value: 'TEC', label: 'Celaya — Ingeniería en sistemas' },
             ].map((stat) => (

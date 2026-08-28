@@ -1,7 +1,7 @@
 const reasons = [
   {
     title: 'Precio accesible',
-    description: 'Al ser estudiantes tenemos costos operativos bajos, lo que se traduce en precios competitivos sin sacrificar calidad.',
+    description: 'Nuestra estructura operativa ligera nos permite ofrecer precios competitivos y justos, sin intermediarios ni sobrecostos — la misma calidad, sin pagar de más.',
     path: 'M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zM12 6v6l4 2',
   },
   {
@@ -43,11 +43,11 @@ export default function WhyUs() {
               Por qué elegirnos
             </p>
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-white mb-6">
-              Experiencia de equipo senior,{' '}
-              <span style={{ color: 'var(--accent)' }}>precios de equipo joven.</span>
+              Calidad de equipo grande,{' '}
+              <span style={{ color: 'var(--accent)' }}>trato cercano de equipo pequeño.</span>
             </h2>
             <p className="leading-relaxed max-w-md mb-8" style={{ color: 'var(--text-muted)' }}>
-              Somos estudiantes del Tec de Celaya con ganas de demostrar de lo que somos capaces. Cada proyecto es una oportunidad de brillar y construir relaciones duraderas con nuestros clientes.
+              Somos egresados del Tec de Celaya, formados con los estándares técnicos más exigentes. Cada proyecto lo tratamos como si fuera nuestro, con la cercanía y compromiso que solo un equipo pequeño puede ofrecer.
             </p>
             <a
               href="#contacto"

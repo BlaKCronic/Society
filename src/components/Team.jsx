@@ -41,7 +41,7 @@ export default function Team() {
             Conoce a los fundadores
           </h2>
           <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Estudiantes del Tecnológico de Celaya unidos por la misma visión: llevar tecnología de calidad a los negocios de todas las regiones.
+            Egresados del Tecnológico de Celaya unidos por la misma visión: llevar tecnología de calidad a los negocios de todas las regiones.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export default function Team() {
           style={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border)' }}
         >
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            <strong style={{ color: 'var(--text-primary)' }}>Estudiantes del Tec de Celaya</strong> — Ingeniería en Sistemas Computacionales. Comprometidos con la calidad, la puntualidad y la honestidad en cada entrega.
+            <strong style={{ color: 'var(--text-primary)' }}>Egresados del Tec de Celaya</strong> — Ingeniería en Sistemas Computacionales. Comprometidos con la calidad, la puntualidad y la honestidad en cada entrega.
           </p>
         </div>
       </div>

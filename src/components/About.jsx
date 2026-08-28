@@ -11,7 +11,7 @@ export default function About() {
               Talento local, soluciones reales para tu empresa.
             </h2>
             <p className="leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>
-              Yañez Society somos tres estudiantes de Ingeniería en Sistemas Computacionales del Tecnológico de Celaya, unidos por la misma pasión: construir software que resuelva problemas reales. Aunque somos jóvenes, nuestro compromiso con la calidad, los plazos de entrega y la atención al cliente es totalmente profesional.
+              Yañez Society somos cuatro egresados de Ingeniería en Sistemas Computacionales del Tecnológico de Celaya, unidos por la misma pasión: construir software que resuelva problemas reales. Nuestro compromiso con la calidad, los plazos de entrega y la atención al cliente es totalmente profesional.
             </p>
             <p className="leading-relaxed mb-8" style={{ color: 'var(--text-secondary)' }}>
               Entendemos que cada negocio es diferente, por eso escuchamos primero y desarrollamos después. Nuestro objetivo es que tecnología que antes solo estaba al alcance de grandes empresas, hoy sea accesible para los negocios y emprendedores de todas las regiones.
@@ -31,7 +31,7 @@ export default function About() {
 
           <div className="grid grid-cols-2 gap-4">
             {[
-              { number: '3', label: 'Fundadores especializados en desarrollo' },
+              { number: '4', label: 'Fundadores especializados en desarrollo' },
               { number: 'TEC', label: 'Celaya — formación de alto nivel técnico' },
               { number: '∞', label: 'Disposición y flexibilidad de horario' },
               { number: 'Cero', label: 'Costos ocultos — siempre transparencia total' },
