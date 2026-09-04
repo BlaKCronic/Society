@@ -32,62 +32,61 @@ const reasons = [
   },
 ]
 
-export default function WhyUs() {
+export default function WhyUs({ language }) {
+  const isEnglish = language === 'en'
+  const translations = isEnglish ? [
+    ['Accessible pricing', 'Our lean operation lets us offer fair, competitive prices without intermediaries or hidden costs.'],
+    ['Personal attention', 'You are not a support ticket. You communicate directly with developers throughout the project.'],
+    ['Current technology', 'We use modern tools and frameworks: React, SQL/NoSQL databases, Python, and more.'],
+    ['Post-delivery support', 'After delivery, we remain available for adjustments, fixes, and continuous improvements.'],
+    ['On-time delivery', 'We commit to realistic dates, a clear work plan, and regular updates at every stage.'],
+    ['SAT compliant', 'Our accounting and tax services follow SAT requirements for filings, CFDI, and tax guidance.'],
+  ] : null
   return (
-    <section id="elegirnos" className="py-24" style={{ backgroundColor: 'var(--bg-dark)' }}>
+    <section id="elegirnos" className="editorial-section principles-section py-24" style={{ backgroundColor: 'var(--bg-dark)' }}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-start">
+        <div className="grid md:grid-cols-[.8fr_1.2fr] gap-16 items-start">
 
           <div className="md:sticky md:top-28">
             <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--accent)' }}>
-              Por qué elegirnos
+              {isEnglish ? 'Why choose us' : 'Por qué elegirnos'}
             </p>
-            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-white mb-6">
-              Calidad de equipo grande,{' '}
-              <span style={{ color: 'var(--accent)' }}>trato cercano de equipo pequeño.</span>
-            </h2>
+            <h2 className="editorial-display principles-display text-white mb-6">{isEnglish ? <>WHY<br /><em>US?</em></> : <>¿POR<br /><em>QUÉ?</em></>}</h2>
             <p className="leading-relaxed max-w-md mb-8" style={{ color: 'var(--text-muted)' }}>
-              Somos egresados del Tec de Celaya, formados con los estándares técnicos más exigentes. Cada proyecto lo tratamos como si fuera nuestro, con la cercanía y compromiso que solo un equipo pequeño puede ofrecer.
+              {isEnglish ? 'We are Tec de Celaya graduates trained to demanding technical standards. We treat every project as our own, with the care and commitment only a small team can offer.' : 'Somos egresados del Tec de Celaya, formados con los estándares técnicos más exigentes. Cada proyecto lo tratamos como si fuera nuestro, con la cercanía y compromiso que solo un equipo pequeño puede ofrecer.'}
             </p>
             <a
               href="#contacto"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-sm transition-all hover:opacity-90"
               style={{ backgroundColor: 'var(--accent)', color: '#0d1b2e' }}
             >
-              Hablemos de tu proyecto
+              {isEnglish ? 'Let us talk about your project' : 'Hablemos de tu proyecto'}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="principles-list">
             {reasons.map((reason, i) => (
               <div
                 key={reason.title}
-                className={`rounded-2xl p-5 transition-all hover:-translate-y-0.5 ${i === reasons.length - 1 ? 'col-span-2 lg:col-span-1' : ''}`}
+                className="principle-card"
                 style={{
-                  backgroundColor: reason.highlight ? 'rgba(245,183,0,0.08)' : 'rgba(255,255,255,0.05)',
-                  border: reason.highlight ? '1px solid rgba(245,183,0,0.25)' : '1px solid rgba(255,255,255,0.06)',
+                  backgroundColor: reason.highlight ? 'rgba(0,0,51,0.35)' : 'rgba(255,255,255,0.03)',
+                  border: reason.highlight ? '1px solid rgba(155,148,134,0.55)' : '1px solid rgba(255,255,255,0.1)',
                 }}
               >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center mb-4"
-                  style={{ backgroundColor: reason.highlight ? 'rgba(245,183,0,0.2)' : 'rgba(245,183,0,0.12)' }}
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5b700" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={reason.path} />
-                  </svg>
-                </div>
+                <span className="principle-index">0{i + 1}</span>
                 <h3 className="font-bold text-sm mb-2 flex items-center gap-2 text-white">
-                  {reason.title}
+                  {translations?.[i]?.[0] || reason.title}
                   {reason.highlight && (
-                    <span className="text-xs font-black px-1.5 py-0.5 rounded" style={{ backgroundColor: 'var(--accent)', color: '#0d1b2e' }}>
+                    <span className="text-xs font-black px-1.5 py-0.5 rounded" style={{ backgroundColor: '#9B9486', color: '#000033' }}>
                       ✓
                     </span>
                   )}
                 </h3>
-                <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>{reason.description}</p>
+                <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>{translations?.[i]?.[1] || reason.description}</p>
               </div>
             ))}
           </div>

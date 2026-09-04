@@ -1,88 +1,113 @@
 import { useState } from 'react'
 
 const navLinks = [
-  { label: 'Inicio', href: '#inicio' },
-  { label: 'Sobre Nosotros', href: '#nosotros' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Por qué elegirnos', href: '#elegirnos' },  
+  { label: 'Home', href: '#inicio' },
+  { label: 'About', href: '#nosotros' },
+  { label: 'Services', href: '#servicios' },
+  { label: 'Why us?', href: '#elegirnos' },  
   { label: 'Contabilidad', href: '#contabilidad' },
   { label: 'Equipo', href: '#equipo' },
+  { label: 'Contacto', href: '#contacto' },
 ]
 
-export default function Navbar() {
+function LanguageSelector({ language, onLanguageChange }) {
+  const [open, setOpen] = useState(false)
+  const currentLanguage = language === 'en' ? 'English' : 'Español'
+
+  const selectLanguage = (value) => {
+    onLanguageChange(value)
+    setOpen(false)
+  }
+
+  return (
+    <div className="language-picker">
+      <button
+        type="button"
+        className={`language-trigger ${open ? 'is-open' : ''}`}
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+      >
+        <span className="language-globe" aria-hidden="true">◎</span>
+        <span>{currentLanguage}</span>
+      </button>
+      {open && (
+        <div className="language-menu" role="listbox" aria-label="Seleccionar idioma">
+          <button type="button" role="option" aria-selected={language === 'es'} className={language === 'es' ? 'selected' : ''} onClick={() => selectLanguage('es')}>
+            <span>ES</span> Español {language === 'es' && <b>✓</b>}
+          </button>
+          <button type="button" role="option" aria-selected={language === 'en'} className={language === 'en' ? 'selected' : ''} onClick={() => selectLanguage('en')}>
+            <span>EN</span> English {language === 'en' && <b>✓</b>}
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default function Navbar({ language, onLanguageChange }) {
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const labels = language === 'en'
+    ? ['Home', 'About', 'Services', 'Why us?', 'Accounting', 'Team', 'Contact']
+    : ['Inicio', 'Nosotros', 'Servicios', '¿Por qué nosotros?', 'Contabilidad', 'Equipo', 'Contacto']
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
-      style={{ backgroundColor: 'var(--bg-card)', borderBottom: '1px solid var(--border)' }}
+      className="site-nav fixed top-0 left-0 right-0 z-50"
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <a href="#inicio" className="flex items-center gap-2">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm font-bold"
-            style={{ backgroundColor: 'var(--bg-dark)' }}
-          >
-            YS
-          </div>
-          <span className="font-bold text-lg" style={{ color: 'var(--text-primary)' }}>
+          <div className="brand-mark">YS</div>
+          <span className="brand-name">
             Yañez Society
           </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
+        <div className="nav-desktop hidden md:flex items-center gap-1">
+          {navLinks.map((link, index) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium transition-colors hover:opacity-80"
-              style={{ color: 'var(--text-secondary)' }}
+              className={`nav-link text-sm font-medium transition-colors ${link.label === 'Home' ? 'active' : ''}`}
             >
-              {link.label}
+              {labels[index]}
             </a>
           ))}
-          <a
-            href="#contacto"
-            className="text-sm font-bold px-5 py-2 rounded-full transition-all hover:opacity-90"
-            style={{ backgroundColor: 'var(--accent)', color: '#0d1b2e' }}
-          >
-            Contáctanos
-          </a>
+          <LanguageSelector language={language} onLanguageChange={onLanguageChange} />
         </div>
 
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="nav-toggle md:hidden flex flex-col gap-1.5 p-2"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <span className={`block w-5 h-0.5 transition-transform duration-200 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} style={{ backgroundColor: 'var(--text-primary)' }} />
-          <span className={`block w-5 h-0.5 transition-opacity duration-200 ${menuOpen ? 'opacity-0' : ''}`} style={{ backgroundColor: 'var(--text-primary)' }} />
-          <span className={`block w-5 h-0.5 transition-transform duration-200 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} style={{ backgroundColor: 'var(--text-primary)' }} />
+          <span className={`block w-5 h-0.5 transition-transform duration-200 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`block w-5 h-0.5 transition-opacity duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
+          <span className={`block w-5 h-0.5 transition-transform duration-200 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
         </button>
       </div>
 
       {menuOpen && (
         <div
-          className="md:hidden px-6 py-4 flex flex-col gap-4"
-          style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border)' }}
+          className="mobile-menu nav-mobile-menu md:hidden px-6 py-4 flex flex-col gap-4"
         >
-          {navLinks.map((link) => (
+          {navLinks.map((link, index) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-sm font-medium"
-              style={{ color: 'var(--text-secondary)' }}
+              className="nav-link text-sm font-medium"
             >
-              {link.label}
+              {labels[index]}
             </a>
           ))}
+          <LanguageSelector language={language} onLanguageChange={onLanguageChange} />
           <a
             href="#contacto"
             onClick={() => setMenuOpen(false)}
-            className="text-sm font-bold px-5 py-2 rounded-full text-center"
-            style={{ backgroundColor: 'var(--accent)', color: '#0d1b2e' }}
+            className="nav-cta text-sm font-bold rounded-full text-center"
           >
-            Contáctanos
+            {language === 'en' ? 'Contact us' : 'Contáctanos'}
           </a>
         </div>
       )}

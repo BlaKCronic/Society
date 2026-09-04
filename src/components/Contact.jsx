@@ -70,7 +70,13 @@ function validateForm(form) {
   return errors
 }
 
-export default function Contact() {
+export default function Contact({ language }) {
+  const isEnglish = language === 'en'
+  const copy = isEnglish ? {
+    eyebrow: 'Contact', title: 'Tell us your idea, we will make it real.', intro: 'The first consultation is completely free. Let us evaluate together how we can help with your project.', formTitle: 'Send us a message', note: 'First consultation 100% free and without commitment.', name: 'Name or Company', email: 'Email address', service: 'Service of interest', choose: 'Select a service', idea: 'Tell us about your idea or problem', send: 'Request free consultation', sending: 'Sending...', blocked: 'Sending limit reached', privacy: 'Your information is protected and will never be shared.', policy: 'Privacy policy', sent: 'Message sent!', sentText: 'We will contact you within 24 hours.', another: 'Send another message', error: 'An error occurred while sending. Contact us directly at', placeholderName: 'Ex: Hardware store', placeholderMessage: 'Ex: I need a system to manage inventory and sales...'
+  } : {
+    eyebrow: 'Contacto', title: 'Cuéntanos tu idea, nosotros la hacemos realidad.', intro: 'La primera asesoría es completamente gratuita. Agenda una reunión con nosotros y evaluamos juntos cómo podemos ayudarte con tu proyecto.', formTitle: 'Envíanos un mensaje', note: 'Primera asesoría 100% gratuita y sin compromiso.', name: 'Nombre o Empresa', email: 'Correo Electrónico', service: 'Servicio de Interés', choose: 'Selecciona un servicio', idea: 'Cuéntanos tu idea o problema', send: 'Solicitar asesoría gratuita', sending: 'Enviando...', blocked: 'Límite de envíos alcanzado', privacy: 'Tu información está protegida y nunca será compartida.', policy: 'Política de privacidad', sent: '¡Mensaje enviado!', sentText: 'Nos pondremos en contacto contigo en menos de 24 horas.', another: 'Enviar otro mensaje', error: 'Ocurrió un error al enviar. Escríbenos directamente a', placeholderName: 'Ej: Ferretería El Clavo', placeholderMessage: 'Ej: Tengo una tienda y quiero un sistema para controlar mi inventario y ventas...'
+  }
   const formRef = useRef(null)
   const [form, setForm]         = useState({ name: '', email: '', service: '', message: '' })
   const [errors, setErrors]     = useState({})
@@ -122,12 +128,12 @@ export default function Contact() {
 
           {/* Info lateral */}
           <div>
-            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--accent)' }}>Contacto</p>
+            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--accent)' }}>{copy.eyebrow}</p>
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-5" style={{ color: 'var(--text-primary)' }}>
-              Cuéntanos tu idea, nosotros la hacemos realidad.
+              {copy.title}
             </h2>
             <p className="leading-relaxed mb-10" style={{ color: 'var(--text-secondary)' }}>
-              La primera asesoría es completamente gratuita. Agenda una reunión con nosotros y evaluamos juntos cómo podemos ayudarte con tu proyecto.
+              {copy.intro}
             </p>
             <div className="space-y-5">
               {[
@@ -175,27 +181,27 @@ export default function Contact() {
             {status === 'sent' ? (
               <div className="text-center py-12">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'rgba(245,183,0,0.15)' }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f5b700" strokeWidth="2.5">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B9486" strokeWidth="2.5">
                     <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
-                <h3 className="font-bold text-xl mb-2" style={{ color: 'var(--text-primary)' }}>¡Mensaje enviado!</h3>
-                <p className="text-sm mb-6" style={{ color: 'var(--text-secondary)' }}>Nos pondremos en contacto contigo en menos de 24 horas.</p>
+                <h3 className="font-bold text-xl mb-2" style={{ color: 'var(--text-primary)' }}>{copy.sent}</h3>
+                <p className="text-sm mb-6" style={{ color: 'var(--text-secondary)' }}>{copy.sentText}</p>
                 <button onClick={() => setStatus('idle')} className="text-xs font-semibold underline underline-offset-2" style={{ color: 'var(--accent)' }}>
-                  Enviar otro mensaje
+                  {copy.another}
                 </button>
               </div>
             ) : (
               <>
                 <div className="flex items-start justify-between mb-1">
-                  <h3 className="font-bold text-xl" style={{ color: 'var(--text-primary)' }}>Envíanos un mensaje</h3>
+                  <h3 className="font-bold text-xl" style={{ color: 'var(--text-primary)' }}>{copy.formTitle}</h3>
                   {!isBlocked && remaining < MAX_SUBMISSIONS && (
                     <span className="text-xs px-2 py-1 rounded-full flex-shrink-0 ml-3 mt-0.5" style={{ backgroundColor: 'rgba(245,183,0,0.1)', color: 'var(--accent)', border: '1px solid rgba(245,183,0,0.2)' }}>
                       {remaining} envío{remaining !== 1 ? 's' : ''} restante{remaining !== 1 ? 's' : ''}
                     </span>
                   )}
                 </div>
-                <p className="text-xs mb-6" style={{ color: 'var(--text-muted)' }}>Primera asesoría 100% gratuita y sin compromiso.</p>
+                <p className="text-xs mb-6" style={{ color: 'var(--text-muted)' }}>{copy.note}</p>
 
                 {isBlocked && (
                   <div className="mb-4 px-4 py-3 rounded-xl text-xs" style={{ backgroundColor: 'rgba(245,183,0,0.08)', border: '1px solid rgba(245,183,0,0.2)', color: 'var(--accent)' }}>
@@ -220,13 +226,13 @@ export default function Contact() {
                   {/* Nombre */}
                   <div>
                     <div className="flex justify-between mb-1.5">
-                      <label className="block text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>Nombre o Empresa</label>
+                      <label className="block text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>{copy.name}</label>
                       <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{form.name.length}/{MAX_LENGTHS.name}</span>
                     </div>
                     <input
                       type="text"
                       name="from_name"
-                      placeholder="Ej: Ferretería El Clavo"
+                      placeholder={copy.placeholderName}
                       value={form.name}
                       onChange={(e) => handleChange('name', e.target.value)}
                       className={errors.name ? inputErr : inputOk}
@@ -238,7 +244,7 @@ export default function Contact() {
 
                   {/* Email */}
                   <div>
-                    <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>Correo Electrónico</label>
+                    <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>{copy.email}</label>
                     <input
                       type="email"
                       name="from_email"
@@ -254,7 +260,7 @@ export default function Contact() {
 
                   {/* Servicio */}
                   <div>
-                    <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>Servicio de Interés</label>
+                    <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>{copy.service}</label>
                     <select
                       name="service"
                       value={form.service}
@@ -263,17 +269,17 @@ export default function Contact() {
                       style={inputStyle}
                       disabled={isBlocked}
                     >
-                      <option value="">Selecciona un servicio</option>
-                      <optgroup label="── Desarrollo ──">
-                        <option>Desarrollo Web (sitio o tienda en línea)</option>
-                        <option>Desarrollo de Software a la medida</option>
-                        <option>Migración de Excel a sistema profesional</option>
-                        <option>Otro / No sé por dónde empezar</option>
+                      <option value="">{copy.choose}</option>
+                      <optgroup label={isEnglish ? '── Development ──' : '── Desarrollo ──'}>
+                        <option>{isEnglish ? 'Web development (site or online store)' : 'Desarrollo Web (sitio o tienda en línea)'}</option>
+                        <option>{isEnglish ? 'Custom software development' : 'Desarrollo de Software a la medida'}</option>
+                        <option>{isEnglish ? 'Excel migration to a professional system' : 'Migración de Excel a sistema profesional'}</option>
+                        <option>{isEnglish ? 'Other / I do not know where to start' : 'Otro / No sé por dónde empezar'}</option>
                       </optgroup>
-                      <optgroup label="── Contabilidad & Fiscal ──">
-                        <option>Declaración Mensual (IVA &amp; ISR)</option>
-                        <option>Declaración Anual (Cierre Fiscal)</option>
-                        <option>Facturación &amp; Asesoramiento (CFDI + Régimen Óptimo)</option>
+                      <optgroup label={isEnglish ? '── Accounting & Tax ──' : '── Contabilidad & Fiscal ──'}>
+                        <option>{isEnglish ? 'Monthly filing (VAT & income tax)' : 'Declaración Mensual (IVA & ISR)'}</option>
+                        <option>{isEnglish ? 'Annual filing (fiscal year end)' : 'Declaración Anual (Cierre Fiscal)'}</option>
+                        <option>{isEnglish ? 'Billing & advice (CFDI + best tax regime)' : 'Facturación & Asesoramiento (CFDI + Régimen Óptimo)'}</option>
                       </optgroup>
                     </select>
                   </div>
@@ -281,13 +287,13 @@ export default function Contact() {
                   {/* Mensaje */}
                   <div>
                     <div className="flex justify-between mb-1.5">
-                      <label className="block text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>Cuéntanos tu idea o problema</label>
+                      <label className="block text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>{copy.idea}</label>
                       <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{form.message.length}/{MAX_LENGTHS.message}</span>
                     </div>
                     <textarea
                       rows={4}
                       name="message"
-                      placeholder="Ej: Tengo una tienda y quiero un sistema para controlar mi inventario y ventas..."
+                      placeholder={copy.placeholderMessage}
                       value={form.message}
                       onChange={(e) => handleChange('message', e.target.value)}
                       className={`${errors.message ? inputErr : inputOk} resize-none`}
@@ -308,9 +314,9 @@ export default function Contact() {
                         <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                           <path d="M21 12a9 9 0 1 1-6.219-8.56" strokeLinecap="round" />
                         </svg>
-                        Enviando...
+                        {copy.sending}
                       </>
-                    ) : isBlocked ? 'Límite de envíos alcanzado' : 'Solicitar asesoría gratuita'}
+                    ) : isBlocked ? copy.blocked : copy.send}
                   </button>
 
                   <div className="flex items-center justify-center gap-2 pt-1">
@@ -318,13 +324,13 @@ export default function Contact() {
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                     </svg>
                     <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                      Tu información está protegida y nunca será compartida.{' '}
+                      {copy.privacy}{' '}
                       <button
                         type="button"
                         onClick={() => document.getElementById('privacy-modal').showModal()}
                         className="underline underline-offset-2 hover:opacity-70 transition-opacity cursor-pointer"
                       >
-                        Política de privacidad
+                        {copy.policy}
                       </button>
                     </p>
                   </div>
